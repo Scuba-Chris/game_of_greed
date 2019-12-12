@@ -1,24 +1,18 @@
-from random import shuffle
+import random
 from collections import Counter
+import re
 
 
 class Game:
 
-    def __init__(self):
-        pass
-
-    def play(self):
-
-        print('welcome to game of greed!')
-
-        while True:
-            start_awnser = input('are you ready to play?')
-            if start_awnser == 'y':
-                print('check back tomorrow')
-                break
-            else:
-                print('ok. maybe another time')
-                break
+    def __init__(self, _print=print, _input=input):
+        self._print = print
+        self._input = input
+        # self._roll_dice = roll_dice 
+        self._round_num = 10
+        self._score = 0
+        self.rolled = []
+        self.keepers = []
 
     def calculate_score(self, dice):
         
@@ -58,13 +52,50 @@ class Game:
                 break 
             return score_count 
         return 0
+    
+    def roll_dice(self, num_dice):
+        
+        return [random.randint(1,6) for i in range(num_dice)]
+
+    def dice_handling(self, num_dice=6):
+        selected_dice = ()
+        self.rolled = self.roll_dice(num_dice) 
+        selected_dice = tuple(int(char) for char in self.keepers)
+        self._print(selected_dice)
+    
+    def dice_inputs(self, message):
+        while True:
+            try:
+                user_input = int(self._input(message))
+            except ValueError:
+                self._print('Please only enter numbers')
+                continue
+            else:
+                return user_input
+
+    def play(self):
+
+        self._print('welcome to game of greed!')
+        start_awnser = self._input('are you ready to play? - ')
+        if start_awnser == 'y':
+            self.dice_handling()
+            self._print(self.rolled)
+            held_dice_returned_str = (self.dice_inputs('what numbers would you like to keep? - '))
+            # held_dice = re.findall(r'[1-6]{1,6}', str)
+            self.keepers.append(held_dice_returned_str) 
+        else:
+            self._print('ok. maybe another time')
+
+
+
 
 if __name__ == "__main__":
     game = Game()
 
-    try:
-        game.play()
-        game.calculate_score(dice)
-
-    except:
-        print('well then')
+    game.play()
+    game.dice_handling()
+    # try:
+    #     game.calculate_score(dice)
+    #     print(game.roll_dice(6))
+    # except:
+    #     print('well then')
