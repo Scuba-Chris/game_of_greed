@@ -66,7 +66,13 @@ class Game:
     def dice_inputs(self, message):
         while True:
             try:
-                user_input = int(self._input(message))
+                user_input = self._input(message)
+                user_input = [int(num) for num in user_input]
+                for num in user_input:   
+                    if 1 > num or num > 6:
+                        raise ValueError('please enter 1 -6')
+                # regex_obj = re.compile(r'[1-6]{1-6}')
+                # match_obj = regex_obj.match(user_input)
             except ValueError:
                 self._print('Please only enter numbers')
                 continue
