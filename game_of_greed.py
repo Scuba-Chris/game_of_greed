@@ -60,8 +60,13 @@ class Game:
     def dice_handling(self, num_dice=6):
         selected_dice = ()
         self.rolled = self.roll_dice(num_dice) 
-        selected_dice = tuple(int(char) for char in self.keepers)
+        # selected_dice = tuple(int(char) for char in self.keepers)
         self._print(selected_dice)
+
+    # def validate_roll():
+    #     roll_counter = Counter(roll)
+    #     keepers_counter = Counter(keepers)
+    #     return len(keepers_counter - roll_counter)
     
     def dice_inputs(self, message):
         while True:
