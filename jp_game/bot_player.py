@@ -81,8 +81,8 @@ class YesBot:
 
         print(msg)
 
-    def keep_straight(self):
-        return ''.join([str(d) for d in self.roll if d == 123456])
+    def keep_straight(self, counter):
+        return ''.join([str(d) for d in self.roll if ])
 
     
 
@@ -91,6 +91,8 @@ class YesBot:
         pass
 
     def dice_to_keep(self):
+        counter = Counter(dice)
+
         return ''.join([str(d) for d in self.roll if d == 1])
      
 
@@ -105,7 +107,6 @@ class YesBot:
             response_str = self.dice_to_keep()
             return response_str
 
-        while 
 
 
 
