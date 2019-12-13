@@ -5,7 +5,7 @@ ONLY use public methods
 - play
 - calculate_score
 """
-
+from collections import Counter
 from jb_game_of_greed import Game
 
 class LazyPlayer:
@@ -80,7 +80,16 @@ class YesBot:
             self.roll = [int(char) for char in msg if char.isdigit()]
 
         print(msg)
-   
+
+    def keep_straight(self):
+        return ''.join([str(d) for d in self.roll if d == 123456])
+
+    
+
+    
+    def roll_pairs(self, count):
+        pass
+
     def dice_to_keep(self):
         return ''.join([str(d) for d in self.roll if d == 1])
      
@@ -94,9 +103,9 @@ class YesBot:
 
         if prompt == 'Enter dice to keep: ':
             response_str = self.dice_to_keep()
-            # for val in self.roll:
-            #     response_str += str(val)
             return response_str
+
+        while 
 
 
 
